@@ -51,7 +51,7 @@ shinyUI(navbarPage(
                                         column(6, h4("rCharts: View Sales By Primary Bike Category", align="center"), 
                                                p(showOutput("primaryBikeCatOut", "nvd3"), align="center"))
                                         ,
-                                        column(6, h4("rCharts: View Sales By Secondary Bike Category", align="center"),
+                                        column(8, h4("rCharts: View Sales By Secondary Bike Category", align="center"),
                                                p(showOutput("secondaryBikeCatOut", "nvd3"), align = "center"))
                                         ),
                                 
@@ -89,13 +89,13 @@ shinyUI(navbarPage(
                                 )) # End Data Tab
                         )
                 )
-        ), # End Analytics Tab Panel
+        ) # End Analytics Tab Panel
         
         # About Tab Panel ------------------------------------------------------           
-        tabPanel("Supporting Docs",
-                mainPanel(column(8, offset = 2, includeMarkdown("about.md"))
-                )
-        ) # End About Tab Panel
+        #tabPanel("Supporting Docs",
+        #        mainPanel(column(8, offset = 2, includeMarkdown("about.md"))
+        #        )
+        #) # End About Tab Panel
         
         ) # End navbarPage
-) # End shinyUI
+        ) # End shinyUI
