@@ -66,12 +66,45 @@ shinyServer(function(input, output, session) {
     })
     
     observe({
-        if(input$reset != 0) {
+        query <- parseQueryString(session$clientData$url_search)
+        #if(input$reset != 0) {
+        if(is.null(query$cat1)){
             updateCheckboxGroupInput(session, "cat1", choices = cat1, selected=cat1)
+        }
+        else{
+            updateCheckboxGroupInput(session, "cat1", choices = cat1, selected=query$cat1)
+        }
+        if(is.null(query$cat2)){
             updateCheckboxGroupInput(session, "cat2", choices = cat2, selected=cat2)
-            updateSliderInput(session, "price.in", val = c(unitPriceMin, unitPriceMax))
+        }
+        else{
+            updateCheckboxGroupInput(session, "cat2", choices = cat2, selected=query$cat2)
+        }
+        #if(is.null(query$year)){
+            #    updateSliderInput(session, "year.in", val = c(yearMin, yearMax))
+            #}
+            #else{
+            #    updateSliderInput(session, "year.in", val = c(query$year, query$year))
+            #}
+        if(is.null(query$year1)&is.null(query$year2)&is.null(query$year)){
             updateSliderInput(session, "year.in", val = c(yearMin, yearMax))
         }
+        else{
+            if(is.null(query$year)){
+                updateSliderInput(session, "year.in", val = c(query$year1, query$year2))
+            }
+            else{
+                updateSliderInput(session, "year.in", val = c(query$year, query$year))
+            }
+        }
+        updateSliderInput(session, "price.in", val = c(unitPriceMin, unitPriceMax))
+        #}
+        #else{
+        #    updateCheckboxGroupInput(session, "cat1", choices = cat1, selected=query$cat1)
+        #    updateCheckboxGroupInput(session, "cat2", choices = cat2, selected=query$cat2)
+        #    updateSliderInput(session, "price.in", val = c(unitPriceMin, unitPriceMax))
+        #    updateSliderInput(session, "year.in", val = c(query$year1, query$year2))
+        #}
         
     })
     
