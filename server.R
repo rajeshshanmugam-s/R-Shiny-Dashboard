@@ -90,7 +90,8 @@ shinyServer(function(input, output, session) {
     orders.extended.filtered <- reactive({
         query <- parseQueryString(session$clientData$url_search)
         # Error handling
-        if (is.null(input$year.in) |
+        if (
+        #is.null(input$year.in) |
         #query$cat1    |
         #query$cat2    |
         is.null(input$price.in)
@@ -99,8 +100,30 @@ shinyServer(function(input, output, session) {
         }
         
         orders.extended %>%
-        filter(year      >=   input$year.in[1],
-        year      <=   input$year.in[2],
+        filter(
+        
+        if (is.null(query$year)){
+        
+            if (is.null(query$year1)){
+                year >= input$year.in[1] 
+            }
+            else{
+                year >= query$year1
+            }
+            if (is.null(query$year2)){
+                year <= input$year.in[2] 
+            }
+            else{
+                year <= query$year2
+            }
+        }
+        else{
+            year == query$year
+            #year == query$year
+        }, 
+        #year      >=   input$year.in[1],
+        #year      <=   input$year.in[2],
+        
         price     >=   input$price.in[1],
         price     <=   input$price.in[2],
         if (is.null(query$cat1)){
