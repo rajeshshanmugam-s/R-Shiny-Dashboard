@@ -13,6 +13,9 @@ library(DT)
 library(leaflet)
 library(plotly)
 
+cors <- function(req, res) {
+    res$setHeader("Access-Control-Allow-Origin", "*")
+}
 
 # Helper has server-side functions to read and manipulate data -----------------
 source("helper.R", local=T)
@@ -94,7 +97,7 @@ shinyServer(function(input, output, session) {
                 updateSliderInput(session, "year.in", val = c(query$year1, query$year2))
             }
             else{
-                updateSliderInput(session, "year.in", val = c(query$year, query$year))
+                updateSliderInput(session, "year.in", val = c(query$year1, query$year2))
             }
         }
         updateSliderInput(session, "price.in", val = c(unitPriceMin, unitPriceMax))
