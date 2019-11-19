@@ -15,14 +15,13 @@ h3.align <- 'center'
 
 # Shiny UI ---------------------------------------------------------------------
 shinyUI(navbarPage(
-        title = "Sales Analytics Dashboard",
-        
+        title = "",
         # Pick a bootstrap theme from https://rstudio.github.io/shinythemes/
         theme = shinytheme("flatly"),
         
         # Analytics tab panel --------------------------------------------------        
         tabPanel(
-                title = "Analytics",
+                title = "",
                 
                 # 
                 sidebarPanel(width=3,
@@ -87,7 +86,9 @@ shinyUI(navbarPage(
                                         dataTableOutput(outputId="table")
                                          
                                 )) # End Data Tab
-                        )
+                        ),
+                        
+                        tags$style(type = 'text/css', '.navbar { display:none }', '.tab-content { margin-top: 30px; } '),
                 )
         ) # End Analytics Tab Panel
         
