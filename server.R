@@ -97,7 +97,7 @@ shinyServer(function(input, output, session) {
                 updateSliderInput(session, "year.in", val = c(query$year1, query$year2))
             }
             else{
-                updateSliderInput(session, "year.in", val = c(query$year1, query$year2))
+                updateSliderInput(session, "year.in", val = c(query$year, query$year))
             }
         }
         updateSliderInput(session, "price.in", val = c(unitPriceMin, unitPriceMax))
